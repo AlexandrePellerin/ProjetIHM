@@ -19,4 +19,10 @@ public class Couleurs {
 	public void setCouleur(int r,int g,int b){
 		this.couleur = new Color(r,g,b);
 	}
+	
+	public String toString(){
+		return "#" + Integer.toHexString(this.getCouleur().getRed()) + 
+				Integer.toHexString(this.getCouleur().getGreen()) + 
+				Integer.toHexString(this.getCouleur().getBlue());
+	}
 }

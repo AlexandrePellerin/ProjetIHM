@@ -1,80 +1,63 @@
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.JMenuItem;
+import java.awt.FlowLayout;
 
 public class Main {
 	
 	public static void main(String[]args){
 		JFrame fenetre = new JFrame("IHM");
-		fenetre.setSize(800, 500);
+		fenetre.setSize(700, 500);
 		fenetre.setResizable(true);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.getContentPane().setLayout(new GridBagLayout());
-		GridBagConstraints c= new GridBagConstraints();
-		JMenuBar menu = new JMenuBar();
+
+		PanelDeCouleurs panneau = new PanelDeCouleurs(5);
 		
-		JMenu m1 = new JMenu("Fichier");
-		JMenu m2 = new JMenu("Edition");
-		JMenu m3 = new JMenu("Affichage");
-		JMenu m4 = new JMenu("Options");
-		JMenu m5 = new JMenu("Aide");
+		JMenuBar menuBar = new JMenuBar();
+		fenetre.setJMenuBar(menuBar);
 		
-		m1.add("Nouveau");
+		JMenu mnFichier = new JMenu("Fichier");
+		menuBar.add(mnFichier);
 		
-		m2.add("Retour arriere");
+		JMenuItem mntmNouveau = new JMenuItem("Nouveau");
+		mnFichier.add(mntmNouveau);
 		
-		m3.add("Compil Auto des Couleurs");
+		JMenu mnEdition = new JMenu("Edition");
+		menuBar.add(mnEdition);
 		
-		m4.add("Rajouter une couleur");
+		JMenu mnAffichage = new JMenu("Affichage");
+		menuBar.add(mnAffichage);
 		
-		m5.add("A Propos");
+		JMenu mnOptions = new JMenu("Options");
+		menuBar.add(mnOptions);
 		
-		menu.add(m1);
-		menu.add(m2);
-		menu.add(m3);
-		menu.add(m4);
-		menu.add(m5);
+		JMenu mnAide = new JMenu("Aide");
+		menuBar.add(mnAide);
 		
 		JPanel bouttons = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) bouttons.getLayout();
+		flowLayout_1.setHgap(50);
 		bouttons.add(new JButton("Auto"));
-		//bouttons.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
-		
+		fenetre.getContentPane().add(bouttons, BorderLayout.WEST);
 		
 		ArcEnCiel arcenciel = new ArcEnCiel();
-		//arcenciel.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
+		FlowLayout flowLayout_2 = (FlowLayout) arcenciel.getLayout();
+		flowLayout_2.setHgap(100);
+		fenetre.getContentPane().add(arcenciel, BorderLayout.CENTER);
 		
-		JPanel sliders = new JPanel();
-		sliders.add(new JSlider());
-		//sliders.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
-
-		PanelDeCouleurs panneau = new PanelDeCouleurs(2);
-		panneau.setSize(fenetre.getWidth(),fenetre.getHeight()/2);
+		Sliders sliders = new Sliders(panneau);
+		//FlowLayout flowLayout_3 = (FlowLayout) sliders.getLayout();
+		//flowLayout_3.setHgap(50);
+		fenetre.getContentPane().add(sliders, BorderLayout.EAST);
 		
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx=0;c.gridy=0;c.gridwidth=3;
-		fenetre.add(menu,c);
-		c.gridx=0;c.gridy=1;c.gridheight=5;c.gridwidth=1;
-		fenetre.add(bouttons,c);
-		c.gridx=1;c.gridy=1;c.gridheight=5;c.gridwidth=1;
-		fenetre.add(arcenciel,c);
-		c.gridx=2;c.gridy=1;c.gridheight=5;c.gridwidth=1;
-		fenetre.add(sliders,c);
-		c.gridx=0;c.gridy=6;c.gridheight=10;c.gridwidth=3;
-		fenetre.add(panneau,c);
-		
-		for(int i=0;i<17;i++){
-			c.gridx=3;c.gridy=i;c.gridheight=1;c.gridwidth=1;
-			fenetre.add(new JLabel(" "),c);
-		}
+		FlowLayout flowLayout = (FlowLayout) panneau.getLayout();
+		flowLayout.setVgap(150);
+		fenetre.getContentPane().add(panneau, BorderLayout.SOUTH);
 		
 		fenetre.setVisible(true);
 	}

@@ -9,7 +9,9 @@ public class ArcEnCiel extends JPanel{
 
 	public void paintComponent(Graphics g){
 		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 20, 20);
-		
+		g.fillRect(10, 10, 20, 20);
+		g.setColor(Color.BLACK);
+		g.drawLine(0, 5, 0, this.getHeight()-5);
+		g.drawLine(this.getWidth()-1, 5, this.getWidth()-1, this.getHeight()-5);
 	}
 }
