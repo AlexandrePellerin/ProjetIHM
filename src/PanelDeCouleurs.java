@@ -23,7 +23,7 @@ public class PanelDeCouleurs extends JPanel{
 			n=10;
 		}
 		for(int i=0;i<n;i++){
-			this.liste.add(new Couleurs(255,i*20,(i*50)%255));
+			this.liste.add(new Couleurs(10,i*20,(i*50)%255));
 			this.labels.add(new JLabel(this.liste.get(i).toString()));
 			this.add(this.labels.get(i));
 		}
@@ -38,6 +38,12 @@ public class PanelDeCouleurs extends JPanel{
 		for(int i=0;i<this.liste.size();i++){
 			g.setColor(this.liste.get(i).getCouleur());
 			g.fillRect(5+i*100,20, 50, 50);
+			
+			Color temp = this.liste.get(i).getCouleur();
+			int gris = (int) (0.3 * temp.getRed() + 0.59 * temp.getGreen() + 0.11 * temp.getBlue());
+			temp = new Color(gris, gris, gris);
+			g.setColor(temp);
+			g.fillRect(5+i*100,200, 50, 50);
 			
 		}
 		
