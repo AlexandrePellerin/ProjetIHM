@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -14,10 +15,11 @@ public class Main {
 	
 	public static void main(String[]args){
 		JFrame fenetre = new JFrame("IHM");
-		fenetre.setSize(500, 500);
-		fenetre.setResizable(false);
+		fenetre.setSize(800, 500);
+		fenetre.setResizable(true);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		fenetre.getContentPane().setLayout(new GridBagLayout());
+		GridBagConstraints c= new GridBagConstraints();
 		JMenuBar menu = new JMenuBar();
 		
 		JMenu m1 = new JMenu("Fichier");
@@ -44,37 +46,35 @@ public class Main {
 		
 		JPanel bouttons = new JPanel();
 		bouttons.add(new JButton("Auto"));
-		bouttons.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
+		//bouttons.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
 		
 		
 		ArcEnCiel arcenciel = new ArcEnCiel();
-		arcenciel.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
+		//arcenciel.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
 		
 		JPanel sliders = new JPanel();
 		sliders.add(new JSlider());
-		sliders.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
+		//sliders.setSize(fenetre.getWidth()/3,fenetre.getHeight()/10);
 
 		PanelDeCouleurs panneau = new PanelDeCouleurs(2);
 		panneau.setSize(fenetre.getWidth(),fenetre.getHeight()/2);
 		
-		fenetre.setLayout(new GridLayout(3,1));
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx=0;c.gridy=0;c.gridwidth=3;
+		fenetre.add(menu,c);
+		c.gridx=0;c.gridy=1;c.gridheight=5;c.gridwidth=1;
+		fenetre.add(bouttons,c);
+		c.gridx=1;c.gridy=1;c.gridheight=5;c.gridwidth=1;
+		fenetre.add(arcenciel,c);
+		c.gridx=2;c.gridy=1;c.gridheight=5;c.gridwidth=1;
+		fenetre.add(sliders,c);
+		c.gridx=0;c.gridy=6;c.gridheight=10;c.gridwidth=3;
+		fenetre.add(panneau,c);
 		
-		/*fenetre.getContentPane().add(menu,BorderLayout.NORTH);
-		fenetre.getContentPane().add(bouttons,BorderLayout.WEST);
-		fenetre.getContentPane().add(arcenciel,BorderLayout.CENTER);
-		fenetre.getContentPane().add(sliders,BorderLayout.EAST);
-		fenetre.getContentPane().add(panneau,BorderLayout.SOUTH);*/
-		
-		fenetre.getContentPane().add(menu);
-		
-		JPanel troll = new JPanel();
-		troll.setLayout(new GridLayout(1,3));
-		troll.add(bouttons);
-		troll.add(arcenciel);
-		troll.add(sliders);
-		fenetre.getContentPane().add(troll);
-		
-		fenetre.getContentPane().add(panneau);
+		for(int i=0;i<17;i++){
+			c.gridx=3;c.gridy=i;c.gridheight=1;c.gridwidth=1;
+			fenetre.add(new JLabel(" "),c);
+		}
 		
 		fenetre.setVisible(true);
 	}
