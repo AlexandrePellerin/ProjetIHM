@@ -12,7 +12,7 @@ public class Main {
 	
 	public static void main(String[]args){
 		JFrame fenetre = new JFrame("IHM");
-		fenetre.setSize(700, 500);
+		fenetre.setSize(1000, 600);
 		fenetre.setResizable(true);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -59,6 +59,14 @@ public class Main {
 		flowLayout.setVgap(150);
 		fenetre.getContentPane().add(panneau, BorderLayout.SOUTH);
 		
+		panneau.add();
+		panneau.add();
+		panneau.add();
+		panneau.add();
+		panneau.add();
+		panneau.add();
+		panneau.add();
+		panneau.add();
 		fenetre.setVisible(true);
 	}
 	

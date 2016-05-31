@@ -1,21 +1,24 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelDeCouleurs extends JPanel{
+public class PanelDeCouleurs extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = -3824748272883912645L;
 
 	ArrayList<Couleurs> liste = new ArrayList<>();
 	ArrayList<JLabel> labels = new ArrayList<>();
-	public int selectionne=-1;
+	public int selectionne=0;
 	
 	public PanelDeCouleurs(){
 		this.liste.add(new Couleurs(255,0,0));
 		this.repaint();
+		this.addMouseListener(this);
 	}
 	
 	public PanelDeCouleurs(int n){
@@ -23,15 +26,44 @@ public class PanelDeCouleurs extends JPanel{
 			n=10;
 		}
 		for(int i=0;i<n;i++){
-			this.liste.add(new Couleurs(10,i*20,(i*50)%255));
+			this.liste.add(new Couleurs(10,i*10,(i*50)%255));
 			this.labels.add(new JLabel(this.liste.get(i).toString()));
 			this.add(this.labels.get(i));
 		}
+		this.addMouseListener(this);
 		this.repaint();
 	}
 	
 	public void setCouleur(int i,int r,int g,int b){
 		this.liste.get(i).setCouleur(r, g, b);
+	}
+	
+	public void add(){
+		if(this.liste.size()<10){
+			this.liste.add(new Couleurs(10,100,100));
+		}
+	}
+	
+	public void remove(){
+		if(this.liste.size()>4){
+			this.liste.remove(this.liste.size()-1);
+		}
+		this.repaint();
+	}
+	
+	public void remove(int indice){
+		if(this.liste.size()>4){
+			this.liste.remove(indice);
+		}
+		this.repaint();
+	}
+	
+	public Couleurs getCouleurs(int i){
+		return this.liste.get(i);
+	}
+	
+	public int getIndice(){
+		return this.selectionne;
 	}
 	
 	public void paintComponent(Graphics g){
@@ -51,4 +83,39 @@ public class PanelDeCouleurs extends JPanel{
 		g.drawLine(5, 0, this.getWidth()-5, 0);
 		System.out.println("Je suis execute");
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("x = "+arg0.getX()+" : y = "+ arg0.getY()+" ;");
+		this.selectionne++;
+		this.selectionne = this.selectionne % this.liste.size();
+		System.out.println(this.selectionne);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
