@@ -51,6 +51,7 @@ public class Main {
 		fenetre.getContentPane().add(arcenciel, BorderLayout.CENTER);
 		
 		Sliders sliders = new Sliders(panneau);
+		panneau.setSliders(sliders);
 		//FlowLayout flowLayout_3 = (FlowLayout) sliders.getLayout();
 		//flowLayout_3.setHgap(50);
 		fenetre.getContentPane().add(sliders, BorderLayout.EAST);

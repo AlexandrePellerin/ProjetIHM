@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
@@ -31,7 +32,10 @@ public class Sliders extends JPanel{
 				// TODO Auto-generated method stub
 				labelRed.setText(""+sliderRed.getValue());
 				if(pan.selectionne != -1){
-					
+					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
+					temp = new Color(sliderRed.getValue(), temp.getGreen(), temp.getRed());
+					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.repaint();
 				}
 			}
 		});
@@ -50,7 +54,10 @@ public class Sliders extends JPanel{
 				// TODO Auto-generated method stub
 				labelGreen.setText(""+sliderGreen.getValue());
 				if(pan.selectionne != -1){
-					
+					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
+					temp = new Color(temp.getRed(), sliderGreen.getValue(), temp.getBlue());
+					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.repaint();
 				}
 			}
 		});
@@ -69,7 +76,10 @@ public class Sliders extends JPanel{
 				// TODO Auto-generated method stub
 				labelBlue.setText(""+sliderBlue.getValue());
 				if(pan.selectionne != -1){
-					
+					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
+					temp = new Color(temp.getRed(), temp.getGreen(), sliderBlue.getValue());
+					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.repaint();
 				}
 			}
 		});
@@ -77,7 +87,10 @@ public class Sliders extends JPanel{
 		this.add(labelBlue);
 	}
 	
-	public static void setSliders(){
-		
+	public void updateSliders(){
+		this.sliderRed.setValue(pan.getCouleurs(pan.selectionne).getCouleur().getRed());
+		this.sliderBlue.setValue(pan.getCouleurs(pan.selectionne).getCouleur().getBlue());
+		this.sliderGreen.setValue(pan.getCouleurs(pan.selectionne).getCouleur().getGreen());
+		this.repaint();
 	}
 }

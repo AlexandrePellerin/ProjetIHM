@@ -20,6 +20,10 @@ public class Couleurs {
 		this.couleur = new Color(r,g,b);
 	}
 	
+	public void setColor(Color color){
+		this.couleur = color;
+	}
+	
 	public String toString(){
 		return "#" + Integer.toHexString(this.getCouleur().getRed()) + 
 				Integer.toHexString(this.getCouleur().getGreen()) + 

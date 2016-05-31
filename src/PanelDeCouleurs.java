@@ -14,6 +14,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 	ArrayList<Couleurs> liste = new ArrayList<>();
 	ArrayList<JLabel> labels = new ArrayList<>();
 	public int selectionne=0;
+	public Sliders sliders ;
 	
 	public PanelDeCouleurs(){
 		this.liste.add(new Couleurs(255,0,0));
@@ -26,12 +27,16 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 			n=10;
 		}
 		for(int i=0;i<n;i++){
-			this.liste.add(new Couleurs(10,i*10,(i*50)%255));
+			this.liste.add(new Couleurs(10,((i*10)%255),((i*50)%255)));
 			this.labels.add(new JLabel(this.liste.get(i).toString()));
 			this.add(this.labels.get(i));
 		}
 		this.addMouseListener(this);
 		this.repaint();
+	}
+	
+	public void setSliders(Sliders sliders){
+		this.sliders = sliders;
 	}
 	
 	public void setCouleur(int i,int r,int g,int b){
@@ -91,6 +96,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 		this.selectionne++;
 		this.selectionne = this.selectionne % this.liste.size();
 		System.out.println(this.selectionne);
+		sliders.updateSliders();
 	}
 
 	@Override
