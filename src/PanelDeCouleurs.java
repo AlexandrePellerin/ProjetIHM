@@ -74,6 +74,8 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 	}
 	
 	public void paintComponent(Graphics g){
+		g.setColor(getBackground());
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		for(int i=0;i<this.liste.size();i++){
 			g.setColor(this.liste.get(i).getCouleur());
 			g.fillRect(5+i*100,20, 50, 50);
