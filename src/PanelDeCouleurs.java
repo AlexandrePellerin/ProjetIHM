@@ -46,6 +46,8 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 	public void add(){
 		if(this.liste.size()<10){
 			this.liste.add(new Couleurs(10,100,100));
+			this.labels.add(new JLabel(this.liste.get(this.liste.size()-1).toString()));
+			this.add(this.labels.get(this.labels.size()-1));
 		}
 	}
 	
@@ -81,12 +83,11 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 			temp = new Color(gris, gris, gris);
 			g.setColor(temp);
 			g.fillRect(5+i*100,200, 50, 50);
-			
+			this.labels.get(i).setText(this.liste.get(i).toString());
 		}
 		
 		g.setColor(Color.BLACK);
 		g.drawLine(5, 0, this.getWidth()-5, 0);
-		System.out.println("Je suis execute");
 	}
 
 	@Override

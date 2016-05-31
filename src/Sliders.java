@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -21,6 +22,7 @@ public class Sliders extends JPanel{
 		this.pan = panneau;
 		this.setLayout(new GridLayout(3,3));
 		JLabel label = new JLabel("Red");
+		
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(label);
 		sliderRed = new JSlider(0,255,pan.getCouleurs(pan.selectionne).getCouleur().getRed());

@@ -25,8 +25,22 @@ public class Couleurs {
 	}
 	
 	public String toString(){
-		return "#" + Integer.toHexString(this.getCouleur().getRed()) + 
-				Integer.toHexString(this.getCouleur().getGreen()) + 
-				Integer.toHexString(this.getCouleur().getBlue());
+		String temp = "#";
+		if(Integer.toHexString(this.getCouleur().getRed()).length()==1){
+			temp += "0";
+		}
+		temp += Integer.toHexString(this.getCouleur().getRed());
+		
+		if(Integer.toHexString(this.getCouleur().getGreen()).length()==1){
+			temp += "0";
+		}
+		temp += Integer.toHexString(this.getCouleur().getGreen());
+		
+		if(Integer.toHexString(this.getCouleur().getBlue()).length()==1){
+			temp += "0";
+		}
+		temp += Integer.toHexString(this.getCouleur().getBlue());
+		
+		return temp;
 	}
 }
