@@ -1,13 +1,13 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.SwingConstants;
 
 public class Sliders extends JPanel{
 
@@ -35,7 +35,7 @@ public class Sliders extends JPanel{
 				labelRed.setText(""+sliderRed.getValue());
 				if(pan.selectionne != -1){
 					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
-					temp = new Color(sliderRed.getValue(), temp.getGreen(), temp.getRed());
+					temp = new Color(sliderRed.getValue(), temp.getGreen(), temp.getBlue());
 					pan.getCouleurs(pan.selectionne).setColor(temp);
 					pan.repaint();
 				}
@@ -87,6 +87,12 @@ public class Sliders extends JPanel{
 		});
 		this.labelBlue = new JLabel(""+sliderBlue.getValue());
 		this.add(labelBlue);
+		this.repaint();
+	}
+	
+	public void paintComonent(Graphics g){
+		g.setColor(Color.black);
+		g.drawLine(5, 0, 5, this.getHeight());
 	}
 	
 	public void updateSliders(){

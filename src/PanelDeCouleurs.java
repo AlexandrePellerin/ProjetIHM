@@ -86,6 +86,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener{
 			g.setColor(temp);
 			g.fillRect(5+i*100,200, 50, 50);
 			this.labels.get(i).setText(this.liste.get(i).toString());
+			this.labels.get(i).setBounds(5+i*100, 135, this.labels.get(i).getWidth(), this.labels.get(i).getHeight());
 		}
 		
 		g.setColor(Color.BLACK);

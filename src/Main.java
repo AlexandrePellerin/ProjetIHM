@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +13,8 @@ public class Main {
 	
 	public static void main(String[]args){
 		JFrame fenetre = new JFrame("IHM");
-		fenetre.setSize(1000, 600);
+		fenetre.setSize(1280, 720);
+		fenetre.setMinimumSize(new Dimension(1280, 720));
 		fenetre.setResizable(true);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,19 +43,12 @@ public class Main {
 		
 		JPanel bouttons = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) bouttons.getLayout();
-		flowLayout_1.setHgap(50);
+		flowLayout_1.setVgap((100));
 		bouttons.add(new JButton("Auto"));
 		fenetre.getContentPane().add(bouttons, BorderLayout.WEST);
 		
-		ArcEnCiel arcenciel = new ArcEnCiel();
-		FlowLayout flowLayout_2 = (FlowLayout) arcenciel.getLayout();
-		flowLayout_2.setHgap(100);
-		fenetre.getContentPane().add(arcenciel, BorderLayout.CENTER);
-		
 		Sliders sliders = new Sliders(panneau);
 		panneau.setSliders(sliders);
-		//FlowLayout flowLayout_3 = (FlowLayout) sliders.getLayout();
-		//flowLayout_3.setHgap(50);
 		fenetre.getContentPane().add(sliders, BorderLayout.EAST);
 		
 		FlowLayout flowLayout = (FlowLayout) panneau.getLayout();
