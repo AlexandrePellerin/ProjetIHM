@@ -1,69 +1,91 @@
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 import javax.swing.JMenuItem;
-import java.awt.FlowLayout;
+import javax.swing.JPanel;
 
 public class Main {
+
+	public static PanelDeCouleurs panneau;
 	
-	public static void main(String[]args){
-		JFrame fenetre = new JFrame("IHM");
-		fenetre.setSize(1280, 720);
-		fenetre.setMinimumSize(new Dimension(1280, 720));
+	public static void main(String[] args) {
+		JFrame fenetre = new JFrame("TestMain");
+		fenetre.setMinimumSize(new Dimension(910,500));
+		fenetre.setSize(910, 500);
 		fenetre.setResizable(true);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		PanelDeCouleurs panneau = new PanelDeCouleurs(5);
 		
+		panneau = new PanelDeCouleurs(5);
+
 		JMenuBar menuBar = new JMenuBar();
 		fenetre.setJMenuBar(menuBar);
-		
+
 		JMenu mnFichier = new JMenu("Fichier");
 		menuBar.add(mnFichier);
-		
+
 		JMenuItem mntmNouveau = new JMenuItem("Nouveau");
 		mnFichier.add(mntmNouveau);
-		
+
 		JMenu mnEdition = new JMenu("Edition");
 		menuBar.add(mnEdition);
-		
+
 		JMenu mnAffichage = new JMenu("Affichage");
 		menuBar.add(mnAffichage);
-		
+
 		JMenu mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
-		
+
 		JMenu mnAide = new JMenu("Aide");
 		menuBar.add(mnAide);
+		fenetre.getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel bouttons = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) bouttons.getLayout();
-		flowLayout_1.setVgap((100));
+		bouttons.setLayout(new GridLayout(3, 1));
+		bouttons.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		bouttons.add(new JButton("Auto"));
-		fenetre.getContentPane().add(bouttons, BorderLayout.WEST);
+		JButton ajouter = new JButton("Ajouter");
+		ajouter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panneau.add();
+			}
+		});
+		JButton enlever = new JButton("Retirer");
+		enlever.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panneau.remove();
+			}
+		});
+		bouttons.add(ajouter);
+		bouttons.add(enlever);
 		
 		Sliders sliders = new Sliders(panneau);
 		panneau.setSliders(sliders);
-		fenetre.getContentPane().add(sliders, BorderLayout.EAST);
 		
-		FlowLayout flowLayout = (FlowLayout) panneau.getLayout();
-		flowLayout.setVgap(150);
-		fenetre.getContentPane().add(panneau, BorderLayout.SOUTH);
+		JPanel millieu = new JPanel();
+		millieu.setLayout(new GridLayout(1,2));
+		millieu.add(bouttons);
+		millieu.add(sliders);
+		fenetre.add(millieu);
 		
-		panneau.add();
-		panneau.add();
-		panneau.add();
-		panneau.add();
-		panneau.add();
-		panneau.add();
-		panneau.add();
-		panneau.add();
+		fenetre.add(panneau);
+		panneau.repaint();
+		
 		fenetre.setVisible(true);
 	}
-	
+
 }

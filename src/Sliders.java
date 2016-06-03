@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -20,6 +21,7 @@ public class Sliders extends JPanel{
 	
 	public Sliders(PanelDeCouleurs panneau){
 		this.pan = panneau;
+		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		this.setLayout(new GridLayout(3,3));
 		JLabel label = new JLabel("Red");
 		
@@ -36,7 +38,7 @@ public class Sliders extends JPanel{
 				if(pan.selectionne != -1){
 					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
 					temp = new Color(sliderRed.getValue(), temp.getGreen(), temp.getBlue());
-					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.setCouleur(pan.selectionne, temp.getRed(), temp.getGreen(), temp.getBlue());
 					pan.repaint();
 				}
 			}
@@ -58,7 +60,7 @@ public class Sliders extends JPanel{
 				if(pan.selectionne != -1){
 					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
 					temp = new Color(temp.getRed(), sliderGreen.getValue(), temp.getBlue());
-					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.setCouleur(pan.selectionne, temp.getRed(), temp.getGreen(), temp.getBlue());
 					pan.repaint();
 				}
 			}
@@ -80,7 +82,7 @@ public class Sliders extends JPanel{
 				if(pan.selectionne != -1){
 					Color temp = pan.getCouleurs(pan.selectionne).getCouleur();
 					temp = new Color(temp.getRed(), temp.getGreen(), sliderBlue.getValue());
-					pan.getCouleurs(pan.selectionne).setColor(temp);
+					pan.setCouleur(pan.selectionne, temp.getRed(), temp.getGreen(), temp.getBlue());
 					pan.repaint();
 				}
 			}
@@ -90,10 +92,6 @@ public class Sliders extends JPanel{
 		this.repaint();
 	}
 	
-	public void paintComonent(Graphics g){
-		g.setColor(Color.black);
-		g.drawLine(5, 0, 5, this.getHeight());
-	}
 	
 	public void updateSliders(){
 		this.sliderRed.setValue(pan.getCouleurs(pan.selectionne).getCouleur().getRed());
