@@ -19,6 +19,18 @@ public class Main {
 	public static JFrame fenetre;
 	
 	public static void main(String[] args) {
+		resetFrame();
+	}
+	
+	public static void updateFrame(){
+		Dimension temp = fenetre.getSize();
+		temp.height++;
+		fenetre.setSize(temp);
+		temp.height--;
+		fenetre.setSize(temp);
+	}
+
+	public static void resetFrame(){
 		fenetre = new JFrame("TestMain");
 		fenetre.setMinimumSize(new Dimension(910,500));
 		fenetre.setSize(910, 500);
@@ -44,11 +56,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.add();
-				Dimension temp = fenetre.getSize();
-				temp.height++;
-				fenetre.setSize(temp);
-				temp.height--;
-				fenetre.setSize(temp);
+				updateFrame();
 			}
 		});
 		JButton enlever = new JButton("Retirer");
@@ -58,11 +66,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.remove();
-				Dimension temp = fenetre.getSize();
-				temp.height++;
-				fenetre.setSize(temp);
-				temp.height--;
-				fenetre.setSize(temp);
+				updateFrame();
 			}
 		});
 		JButton trie = new JButton("Trier");
@@ -72,11 +76,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.trieGris();
-				Dimension temp = fenetre.getSize();
-				temp.height++;
-				fenetre.setSize(temp);
-				temp.height--;
-				fenetre.setSize(temp);
+				updateFrame();
 			}
 		});
 		bouttons.add(trie);
@@ -97,12 +97,7 @@ public class Main {
 		
 		fenetre.setVisible(true);
 		
-		Dimension temp = fenetre.getSize();
-		temp.height++;
-		fenetre.setSize(temp);
-		temp.height--;
-		fenetre.setSize(temp);
+		updateFrame();
 		
 	}
-
 }
