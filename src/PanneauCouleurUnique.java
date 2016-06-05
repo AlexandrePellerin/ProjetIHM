@@ -49,15 +49,19 @@ public class PanneauCouleurUnique extends JPanel {
 	public void setLabel(String chaine) {
 		this.label.setText(chaine);
 	}
+	
+	public int getGris(){
+		Color temp = this.couleur.getCouleur();
+		int gris = (int) (0.3* temp.getRed() + 0.59*temp.getGreen() + 0.11 * temp.getBlue());
+		return gris;
+	}
 
 	public void paintComponent(Graphics g){
 		g.setColor(this.couleur.getCouleur());
 		g.fillRect(5, 5, (this.getWidth())-10, (this.getHeight()/3)-5);
 		
-		Color temp = this.couleur.getCouleur();
-		int gris = (int) (0.3 * temp.getRed() + 0.59 * temp.getGreen() + 0.11 * temp.getBlue());
-		temp = new Color(gris, gris, gris);
-		g.setColor(temp);
+		int gris = this.getGris(); 
+		g.setColor(new Color(gris, gris, gris));
 		g.fillRect(5, (this.getHeight()/3)*2+5, (this.getWidth())-10, (this.getHeight()/3)-10);
 	}
 }

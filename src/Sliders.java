@@ -23,6 +23,7 @@ public class Sliders extends JPanel{
 		this.pan = panneau;
 		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		this.setLayout(new GridLayout(3,3));
+		
 		JLabel label = new JLabel("Red");
 		
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,6 +90,11 @@ public class Sliders extends JPanel{
 		});
 		this.labelBlue = new JLabel(""+sliderBlue.getValue());
 		this.add(labelBlue);
+		
+		this.labelRed.setHorizontalAlignment(SwingConstants.CENTER);
+		this.labelBlue.setHorizontalAlignment(SwingConstants.CENTER);
+		this.labelGreen.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		this.repaint();
 	}
 	

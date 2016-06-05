@@ -49,7 +49,7 @@ public class Main {
 		fenetre.getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel bouttons = new JPanel();
-		bouttons.setLayout(new GridLayout(3, 1));
+		bouttons.setLayout(new GridLayout(2, 2));
 		bouttons.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		bouttons.add(new JButton("Auto"));
 		JButton ajouter = new JButton("Ajouter");
@@ -70,6 +70,16 @@ public class Main {
 				panneau.remove();
 			}
 		});
+		JButton trie = new JButton("Trier");
+		trie.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panneau.trieGris();
+			}
+		});
+		bouttons.add(trie);
 		bouttons.add(ajouter);
 		bouttons.add(enlever);
 		

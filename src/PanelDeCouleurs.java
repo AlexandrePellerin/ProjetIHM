@@ -76,13 +76,39 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	public int getIndice() {
 		return this.selectionne;
 	}
+	
+	public void trieGris(){
+		int cpt = this.list.size()-1;
+		while(cpt>0){
+			for(int i=0;i<cpt;i++){
+				if( this.list.get(i).getGris() > this.list.get(i+1).getGris()){
+					this.list = this.inverser(i);
+				}
+			}
+			cpt--;
+		}
+	}
 
+	public ArrayList<PanneauCouleurUnique> inverser(int indice){
+		ArrayList<PanneauCouleurUnique> res = new ArrayList<>();
+		for(int i=0;i<this.list.size();i++){
+			if(i==indice){
+				res.add(this.list.get(indice+1));
+			}else if(i==(indice+1)){
+				res.add(this.list.get(indice));
+			}else{
+				res.add(this.list.get(i));
+			}
+		}
+		return res;
+	}
+	
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		this.removeAll();
 		int taille = this.list.size();
-		this.setLayout(new GridLayout(1 + (taille/6), taille/(1+(taille/6))));
+		this.setLayout(new GridLayout(1 , taille));
 		for (int i = 0; i < this.list.size(); i++) {
 			this.add(this.list.get(i));
 			this.list.get(i).repaint();
