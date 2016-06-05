@@ -16,9 +16,10 @@ import javax.swing.JPanel;
 public class Main {
 
 	public static PanelDeCouleurs panneau;
+	public static JFrame fenetre;
 	
 	public static void main(String[] args) {
-		JFrame fenetre = new JFrame("TestMain");
+		fenetre = new JFrame("TestMain");
 		fenetre.setMinimumSize(new Dimension(910,500));
 		fenetre.setSize(910, 500);
 		fenetre.setResizable(true);
@@ -43,6 +44,11 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.add();
+				Dimension temp = fenetre.getSize();
+				temp.height++;
+				fenetre.setSize(temp);
+				temp.height--;
+				fenetre.setSize(temp);
 			}
 		});
 		JButton enlever = new JButton("Retirer");
@@ -52,6 +58,11 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.remove();
+				Dimension temp = fenetre.getSize();
+				temp.height++;
+				fenetre.setSize(temp);
+				temp.height--;
+				fenetre.setSize(temp);
 			}
 		});
 		JButton trie = new JButton("Trier");
@@ -61,6 +72,11 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panneau.trieGris();
+				Dimension temp = fenetre.getSize();
+				temp.height++;
+				fenetre.setSize(temp);
+				temp.height--;
+				fenetre.setSize(temp);
 			}
 		});
 		bouttons.add(trie);
@@ -80,6 +96,13 @@ public class Main {
 		panneau.repaint();
 		
 		fenetre.setVisible(true);
+		
+		Dimension temp = fenetre.getSize();
+		temp.height++;
+		fenetre.setSize(temp);
+		temp.height--;
+		fenetre.setSize(temp);
+		
 	}
 
 }
