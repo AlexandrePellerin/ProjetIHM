@@ -17,7 +17,7 @@ public class PanneauCouleurUnique extends JPanel {
 		this.couleur = new Couleurs(255, 0, 0);
 		this.label = new JLabel(this.couleur.toString(),SwingConstants.CENTER);
 		this.repaint();
-		this.setLayout(new GridLayout(1, 3));
+		this.setLayout(new GridLayout(3, 1));
 		this.add(new JLabel(" "));
 		this.add(this.label);
 		this.add(new JLabel(" "));
@@ -25,9 +25,9 @@ public class PanneauCouleurUnique extends JPanel {
 
 	public PanneauCouleurUnique(int n) {
 		this.couleur = new Couleurs(10, ((n * 10) % 255), ((n * 50) % 255));
-		this.label = new JLabel(this.couleur.toString());
+		this.label = new JLabel(this.couleur.toString(),SwingConstants.CENTER);
 		this.repaint();
-		this.setLayout(new GridLayout(1, 3));
+		this.setLayout(new GridLayout(3, 1));
 
 		this.add(new JLabel(" "));
 		this.add(this.label);

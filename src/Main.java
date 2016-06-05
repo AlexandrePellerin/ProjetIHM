@@ -26,26 +26,10 @@ public class Main {
 		
 		panneau = new PanelDeCouleurs(5);
 
-		JMenuBar menuBar = new JMenuBar();
+		Menu menuBar = new Menu(panneau);
 		fenetre.setJMenuBar(menuBar);
 
-		JMenu mnFichier = new JMenu("Fichier");
-		menuBar.add(mnFichier);
-
-		JMenuItem mntmNouveau = new JMenuItem("Nouveau");
-		mnFichier.add(mntmNouveau);
-
-		JMenu mnEdition = new JMenu("Edition");
-		menuBar.add(mnEdition);
-
-		JMenu mnAffichage = new JMenu("Affichage");
-		menuBar.add(mnAffichage);
-
-		JMenu mnOptions = new JMenu("Options");
-		menuBar.add(mnOptions);
-
-		JMenu mnAide = new JMenu("Aide");
-		menuBar.add(mnAide);
+		
 		fenetre.getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel bouttons = new JPanel();
