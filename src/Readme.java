@@ -16,7 +16,7 @@ public class Readme {
 		fen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fen.setResizable(true);
 		fen.setMinimumSize(new Dimension(300,400));
-		fen.setSize(new Dimension(300,500));
+		fen.setSize(new Dimension(700,700));
 		
 		JLabel affichage = new JLabel("<html><body>aze<br>test</body></html>");
 		
