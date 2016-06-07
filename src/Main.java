@@ -45,7 +45,19 @@ public class Main {
 		JPanel bouttons = new JPanel();
 		bouttons.setLayout(new GridLayout(2, 2));
 		bouttons.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-		bouttons.add(new JButton("Auto"));
+		
+		JButton auto = new JButton("Auto");
+		auto.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panneau.auto();
+				updateFrame();
+			}
+		});
+		bouttons.add(auto);
+		
 		JButton ajouter = new JButton("Ajouter");
 		ajouter.addActionListener(new ActionListener() {
 			

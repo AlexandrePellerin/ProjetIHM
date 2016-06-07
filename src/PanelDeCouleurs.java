@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -16,6 +17,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	// ArrayList<JLabel> labels = new ArrayList<>();
 	public int selectionne = 0;
 	public Sliders sliders;
+	private Random alea = new Random();
 
 	public PanelDeCouleurs() {
 		this.list.add(new PanneauCouleurUnique());
@@ -88,6 +90,8 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 			cpt--;
 		}
 		this.selectionne = 0;
+		this.repaint();
+		Main.updateFrame();
 	}
 
 	public ArrayList<PanneauCouleurUnique> inverser(int indice){
@@ -105,7 +109,23 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	}
 	
 	public void auto(){
+		this.list.get(0).setCouleur(new Couleurs(30,30,30));
+		for(int i=1;i<this.list.size();i++){
+			this.list.get(i).setCouleur(new Couleurs(alea.nextInt(150)+50,alea.nextInt(150)+50,
+					alea.nextInt(150)+50));
+		}
+		this.trieGris();
+		int taille = 150 / 3;
+		int marge = (int)0.5 * taille;
 		
+		for(int i=1;i<this.list.size();i++){
+			Couleurs temp = this.list.get(i).getCouleur();
+			if(!(this.list.get(i).getGris()>this.list.get(i-1).getGris()+taille-marge &&
+					this.list.get(i).getGris()>this.list.get(i-1).getGris()+taille+marge)){
+				int gris = this.list.get(i).getGris()+taille;
+				
+			}
+		}
 	}
 	
 	public void paintComponent(Graphics g) {

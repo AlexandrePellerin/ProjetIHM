@@ -40,6 +40,7 @@ public class PanneauCouleurUnique extends JPanel {
 
 	public void setCouleur(Couleurs couleur) {
 		this.couleur = couleur;
+		this.label.setText(this.couleur.toString());
 	}
 
 	public JLabel getLabel() {
@@ -57,6 +58,9 @@ public class PanneauCouleurUnique extends JPanel {
 	}
 
 	public void paintComponent(Graphics g){
+		g.setColor(getBackground());
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
 		g.setColor(this.couleur.getCouleur());
 		g.fillRect(5, 5, (this.getWidth())-10, (this.getHeight()/3)-5);
 		
