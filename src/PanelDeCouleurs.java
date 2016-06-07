@@ -86,6 +86,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	}
 	
 	public void trieGris(){
+		this.list.get(selectionne).setBorder(null);
 		int cpt = this.list.size()-1;
 		while(cpt>0){
 			for(int i=0;i<cpt;i++){
@@ -95,7 +96,6 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 			}
 			cpt--;
 		}
-		this.list.get(selectionne).setBorder(null);
 		this.selectionne = 0;
 		this.list.get(selectionne).setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		this.sliders.updateSliders();
