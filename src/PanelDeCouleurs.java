@@ -61,7 +61,9 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 		if (this.list.size() > 4) {
 			this.list.remove(this.list.size() - 1);
 		}
-		this.selectionne--;
+		if(selectionne!=0){
+			this.selectionne--;
+		}
 		this.repaint();
 	}
 
@@ -69,7 +71,7 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 		if (this.list.size() > 4) {
 			this.list.remove(indice);
 		}
-		if(this.selectionne>=indice){
+		if(this.selectionne>=indice && selectionne != 0){
 			this.selectionne--;
 		}
 		this.repaint();
@@ -98,7 +100,6 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 		this.list.get(selectionne).setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		this.sliders.updateSliders();
 		this.repaint();
-		Main.updateFrame();
 	}
 
 	public ArrayList<PanneauCouleurUnique> inverser(int indice){
