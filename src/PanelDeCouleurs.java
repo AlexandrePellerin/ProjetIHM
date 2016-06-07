@@ -1,12 +1,16 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class PanelDeCouleurs extends JPanel implements MouseListener {
 
@@ -89,7 +93,10 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 			}
 			cpt--;
 		}
+		this.list.get(selectionne).setBorder(null);
 		this.selectionne = 0;
+		this.list.get(selectionne).setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+		this.sliders.updateSliders();
 		this.repaint();
 		Main.updateFrame();
 	}
@@ -109,27 +116,55 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	}
 	
 	public void auto(){
-		this.list.get(0).setCouleur(new Couleurs(30,30,30));
+		this.list.get(0).setCouleur(new Couleurs(10,10,10));
 		for(int i=1;i<this.list.size();i++){
-			this.list.get(i).setCouleur(new Couleurs(alea.nextInt(150)+50,alea.nextInt(150)+50,
-					alea.nextInt(150)+50));
+			this.list.get(i).setCouleur(new Couleurs(alea.nextInt(220)+20,alea.nextInt(220)+20,
+					alea.nextInt(220)+20));
 		}
 		this.trieGris();
-		int taille = 150 / 3;
-		int marge = (int)0.5 * taille;
+		int taille = 220 /( this.list.size()-1);
+		int marge = (int)0.2 * taille;
+		
+		try {
+			Thread.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for(int i=1;i<this.list.size();i++){
 			Couleurs temp = this.list.get(i).getCouleur();
-			if(!(this.list.get(i).getGris()>this.list.get(i-1).getGris()+taille-marge &&
-					this.list.get(i).getGris()>this.list.get(i-1).getGris()+taille+marge)){
-				int gris = this.list.get(i).getGris()+taille;
+			if(!(this.list.get(i).getGris()>this.list.get(0).getGris()+(taille*i)-marge &&
+					this.list.get(i).getGris()<this.list.get(0).getGris()+(taille*i)+marge)){
 				
+				int diff =-( this.list.get(i).getGris() -( this.list.get(0).getGris()+(taille*i)))/3;
+				try{
+					temp = new Couleurs(temp.getCouleur().getRed()+diff,temp.getCouleur().getGreen()
+						+diff,temp.getCouleur().getBlue()+diff);
+				}catch(IllegalArgumentException e){
+					int red = temp.getCouleur().getRed()+diff;
+					int green = temp.getCouleur().getGreen()+diff;
+					int blue = temp.getCouleur().getBlue()+diff;
+					if(red>255){
+						red = 255;
+					}
+					if(green>255){
+						green = 255;
+					}
+					if(blue>255){
+						blue = 255;
+					}
+					
+				}
+				this.list.get(i).setCouleur(temp);
 			}
 		}
+		this.repaint();
+		Main.updateFrame();
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.white);
+		g.setColor(getBackground());
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		this.removeAll();
 		int taille = this.list.size();
@@ -137,6 +172,9 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 		for (int i = 0; i < this.list.size(); i++) {
 			this.add(this.list.get(i));
 			this.list.get(i).repaint();
+			if(i==this.selectionne){
+				this.list.get(i).setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+			}
 		}
 
 		g.setColor(Color.BLACK);
@@ -146,12 +184,11 @@ public class PanelDeCouleurs extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("x = " + arg0.getX() + " : y = " + arg0.getY() + " ;");
-		
+		this.list.get(selectionne).setBorder(null);
 		this.selectionne = (arg0.getX()/(this.getWidth()/this.list.size()));
 		
 		this.selectionne = this.selectionne % this.list.size();
-		System.out.println(this.selectionne);
+		this.repaint();
 		sliders.updateSliders();
 	}
 
